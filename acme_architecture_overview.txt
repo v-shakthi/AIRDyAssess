@@ -1,0 +1,107 @@
+ACME Corporation — IT Architecture & Strategy Overview
+======================================================
+Document Type: Internal Architecture Review
+Version: 2024 Q3
+Department: Office of the CTO
+
+1. CURRENT STATE INFRASTRUCTURE
+--------------------------------
+ACME operates a hybrid cloud environment with approximately 60% of workloads on-premises
+and 40% migrated to AWS (primary) and Azure (secondary). The on-premises infrastructure
+runs on VMware vSphere 7.0 and consists of 420 virtual machines across two data centres
+in Chicago and Dallas.
+
+Cloud adoption began in 2021, initially focused on dev/test workloads. Production 
+migrations are ongoing. Key production systems — including the ERP (SAP S/4HANA) and 
+core banking platform — remain on-premises due to regulatory constraints and integration
+complexity.
+
+Network: Cisco Catalyst backbone, MPLS interconnects between data centres. SD-WAN 
+rollout is 70% complete across 45 branch offices.
+
+2. DATA LANDSCAPE
+-----------------
+Data is distributed across multiple systems with limited integration:
+- Operational data: SAP S/4HANA, Salesforce CRM, ServiceNow ITSM
+- Analytics: On-premises SQL Server data warehouse (7TB, updated nightly via batch ETL)
+- Unstructured data: SharePoint Online (document management), Exchange Online (email)
+- IoT/sensor data: 1,200 manufacturing floor sensors, data currently siloed in SCADA systems
+
+Data quality is a known concern. A 2023 internal audit found that 34% of customer records
+had at least one data quality issue (missing fields, duplicates, or format inconsistencies).
+No formal data quality monitoring or data catalogue is in place.
+
+Data governance: A Data Governance Committee was established in 2022 but meets
+infrequently and has not yet produced a formal data policy framework.
+
+3. APPLICATION PORTFOLIO
+-------------------------
+ACME runs 87 enterprise applications. Of these:
+- 12 are classified as "strategic" (core to operations)
+- 31 are "standard" (important but replaceable)
+- 44 are "legacy" (end-of-life risk; 18 have no vendor support)
+
+API maturity is low — most integrations rely on point-to-point connections or batch file
+transfers. An API gateway (Kong) was deployed in 2023 but covers only 8 systems.
+
+3. AUTOMATION & AI INITIATIVES
+-------------------------------
+Current automation capabilities:
+- RPA: 14 attended and unattended bots in production (UiPath), primarily in Finance
+  (invoice processing, reconciliation) and HR (onboarding paperwork)
+- Business rules: ~40% of customer service inquiries handled by rule-based chatbot
+  (satisfaction score: 2.8/5)
+- No machine learning models in production as of Q3 2024
+
+AI exploration:
+- Proof of concept completed for document classification (accuracy: 73%, not productionised)
+- 3 business units have independently subscribed to ChatGPT Enterprise
+  (no central governance or usage monitoring in place)
+
+4. TEAM & SKILLS
+-----------------
+IT organisation: 280 FTE
+- Infrastructure & Ops: 95
+- Application Development: 85
+- Data & Analytics: 32 (4 data engineers, 2 data analysts, 1 BI developer, 25 report writers)
+- Security: 18
+- Architecture: 12
+
+Data science / ML capability: 0 dedicated data scientists. One engineer in the Data team
+has completed an online ML course. No MLOps capability.
+
+AI literacy: An internal survey in 2024 found that 68% of IT staff had not used any AI
+tool in their work in the past 6 months. 12% use AI tools regularly.
+
+Training budget: $800K per year for IT training. No dedicated AI upskilling programme exists.
+
+5. GOVERNANCE & COMPLIANCE
+---------------------------
+Regulatory environment: ACME operates in financial services and is subject to SOX, 
+GDPR (EU customer data), and state-level data privacy laws.
+
+AI governance: No formal AI policy. Legal and Compliance teams have flagged AI use as
+a priority risk area following regulatory guidance from the Federal Reserve (SR 11-7)
+on model risk management.
+
+A draft "AI Acceptable Use Policy" is under review but has not been approved.
+
+6. STRATEGIC CONTEXT
+---------------------
+ACME's 3-year digital transformation strategy (approved by the Board in 2023) identifies
+"AI-augmented operations" as a top-3 strategic priority. The CEO has publicly committed
+to "becoming an AI-native organisation by 2027."
+
+Budget: $4.2M has been allocated for AI and automation initiatives in FY2025, a 3x 
+increase from FY2024.
+
+Executive sponsor: The CTO leads the AI agenda. A Chief Data Officer role has been
+approved but not yet filled.
+
+Key strategic pain points identified for AI:
+- Customer service: High cost-to-serve ($18 average cost per contact vs industry $9)
+- Fraud detection: Rule-based system generates 40% false positive rate
+- Supply chain: Manual demand forecasting; significant inventory overage ($12M annually)
+- Compliance reporting: 3 FTE spend 80% of time on manual regulatory report compilation
+- Employee productivity: Knowledge management is poor; employees cannot easily find
+  internal policies and procedures (avg search time: 22 minutes per query)
