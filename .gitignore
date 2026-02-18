@@ -1,0 +1,38 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ChromaDB vector store (regenerates on startup from uploaded docs)
+chroma_store/
+*.chroma
+
+# Uploaded documents (may contain sensitive client data)
+uploaded_docs/
+
+# Generated reports (contain assessment output — share selectively)
+reports/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.DS_Store
+
+# Logs
+*.log
+*.jsonl
